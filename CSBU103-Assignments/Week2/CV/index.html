@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title of the website, shown in the tab-->
+    <title>My CV</title>
+    <!--import bootstrap icons-->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        /* Set up the fonts' appearance, margin is set to 0 so that the elements inside can be able to extend fully to the entire width/height of the page*/
+        html, body {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.5;
+            font-size: 18px;
+        }
+        /* Set up the main container to stack the divs/sections inside horizontally*/
+        .container {
+            padding: 20px;
+            display: flex;
+
+        }
+        /* Set the size of the image */
+
+        .left-container img{
+            width: 350px;
+        }
+        /* Set up the left container's appearance including border, padding, and centering the text inside*/
+
+        .left-container{
+            border: 2px black dashed;
+            padding: 20px;
+            text-align: center;
+            margin-right: 20px;
+   
+
+        }
+
+        /* Create a background with relative position in order to make the top-rect below fit in */
+        .background {
+            position: relative;
+        }
+        /* Create a top rectangle with absolute position to be placed at the top of the page, behind the content inside .background */
+        .top-rect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #f0f0f0; /* change color */
+            z-index: -99; /* behind content inside .background */
+            
+        }
+        /* Space out the info section and override the its parent's text alignment (center from left-container)*/
+        #info{
+            padding: 10px;
+            text-align: left;
+        }
+        /* Give the icons in the info section background and space, also make a slight distance away from the text */
+        #info i{
+            background-color: rgb(70, 70, 70);
+            color: white;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        /* Style the other links section to be a gray box, also override its parent's text alignment*/
+        #linkinfo {
+            text-align: left;
+            background-color: #717171;
+            padding: 10px 10px 10px 20px;
+            color: white;
+            border-radius: 10px; /* rounded corners */
+        }
+        /* Style the skills section to override its parent's text alignment*/
+        #skills {
+            text-align: left;
+        }
+        /* Most ul usage inside this page only aims to make the workflow more convenient and organized and overall still acts like p tags, therefore the bullet points are removed */
+        ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        /* This specific class, however, is an exception */
+        .list{
+        list-style: circle; padding-left: 30px;
+        /* Make space between each item in the list of the infomation */
+        }
+        #info li {
+            margin-bottom: 20px;
+        }
+        /* Same as above for the other links section, albeit the space is lower */
+        #linkinfo li {
+            margin-bottom: 15px;
+        }
+        /* Style the other links section's content to make the font bold and bigger */
+        #linkinfo ul {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        /* Style the links inside the other links section to have no underlines, a background, rounded corners, and transition effect when hovered */
+        #linkinfo a {
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            transition: ease-in-out 0.3s;
+        }
+        /* Change the link's appearance when hovered */
+        #linkinfo a:hover {
+            background-color: #434343;
+            color: white;
+        }
+
+        /* Give the h2 tags inside the skills section more space in the bottom*/
+        #skills h2 {
+            margin-bottom: 10px;
+        }
+        /* Same for the h3 tags inside the skills section, except with the top as well */
+        #skills h3 {
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+        /* Make a container specifically for education to align the icon and text to the center, also utilize the gap feature instead of margin due to the flex display*/
+        .edu-container {
+            display: flex;
+            align-items: center;
+        }
+        /* Style for the icons used in the right container sections to have circular background and padding */
+        .right-container-icon {
+            color: white;
+            background-color: rgb(70, 70, 70);
+            padding: 10px;
+            border-radius: 100%;
+        }
+        /* Style for the table in the education section */
+        .table1 {
+            width: 100%;
+            border-collapse: collapse; /* merge the border of other cells into one */
+            border-style: hidden; /* remove outside borders */
+
+        }
+        /* Style for the table cells */
+        .table1 th, .table1 td{
+            text-align: center;
+            padding: 10px;
+            border: 1px solid rgb(148, 148, 148)
+        }
+        /* Style for the progress bars in the language section */
+        .progress {
+            width: 100%;
+            height: 20px;
+
+        }
+        /* Style for the last row of the table to have different background color */
+        .table1 tr:last-child {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <!--Create a rectangle at the top for background purposes-->
+        <div class="top-rect"></div>
+        <div class="container">
+            <!--This is the left container that contains the avatar, info, links, and skills, and is on the left side of the page-->
+            <div class="left-container">
+                <section id="info">
+                    <!--Insert the avatar image-->
+                     <img src="./img/Ảnh thẻ.jpg" alt="avatar" class="avatar" />
+                    <ul>
+                        <!--The list items (li tags) below contain my information with corresponding icons (i tags)-->
+                        <li> <i class="bi bi-telephone-fill"></i> 0902870112</li>
+                        <li><i class="bi bi-person-vcard-fill"></i> 25560049</li>
+                        <li><i class="bi bi-house-door-fill"></i> Ho Chi Minh City, Vietnam</li>
+                        <li><i class="bi bi-envelope-at-fill"></i> loll96305@gmail.com</li>
+                    </ul>
+                </section>
+
+                <section id="linkinfo">
+                    <!-- Section for other links such as Github and Facebook-->
+                    <h2><i class="bi bi-link-45deg"></i> Other links</h1>
+
+                    <ul>
+                        <!--The hyperlinks are for accessing my Github and Facebook profiles, in the shape of icons-->                        <li><i class="bi bi-github"></i> Github <a href="https://github.com/UnlivingDeath"><i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                        <li>
+                        <i class="bi bi-facebook"></i> Facebook <a href="https://www.facebook.com/sang.minh.100830"><i class="bi bi-box-arrow-up-right"></i></a>
+                        </li>
+                    </ul>
+                    </section>
+                    <!-- Skills section containing proficiency represented by filled and unfilled circles icons -->
+                    <section id="skills">
+                        <h2><i class="bi bi-person-lines-fill"></i> Skills</h2>
+                        <h3><i class="bi bi-laptop"></i> Programming</h3>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>                    
+                        <hr>
+                        <h3><i class="bi bi-browser-chrome"></i> Web Development</h3>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle"></i>
+                        <hr>
+                        <h3><i class="bi bi-people-fill"></i> Teamwork</h3>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle-fill"></i>
+                        <i class="bi bi-circle"></i>
+                        <i class="bi bi-circle"></i>
+                    </section>
+
+            </div>
+            <!--The right container containing infomration about me, education, certification, and languages I can speak, and is on the right side of the page-->
+            <div class="right-container">
+                <!--The about me section-->
+                <div id="aboutme">
+                    <h1>Phạm Hữu Minh Sang</h1>
+                    <p>First-year student at University of Information Technology</p>
+                    <br>
+                    <h2><i class="bi bi-person-circle right-container-icon"></i> About me</h2>
+                    <hr>
+                    <p>
+                        I am a first-year Computer Science student at the University of Information Technology (UIT). I have a strong passion for technology and programming, and am eager to learn and grow in this field. I am proficient with Python and web development technologies such as HTML, CSS, and JavaScript, as well as being able to adapt to more complex programming languages. In the future, I aim to not only develop my technical skills but also to contribute to the tech industry through collaboration and innovation.</p>
+                </div>
+                <br>
+                <!--The education section, consisting of a table about my education timeline-->
+                <section id="education">
+                    <h2><i class="bi bi-mortarboard-fill right-container-icon"></i> Education</h2>
+                    <hr>
+                    <table class ="table1">
+                        <tr>
+                            <th>2021 - 2024</th>
+                            <td>Graduated from Thu Duc High School</td>
+                        </tr>
+                        <tr>
+                            <th>Current</th>
+                            <td>University of Information Technology</td>
+                        </tr>
+                    </table>
+                </section>
+                <br>
+                <!--The certification section, consisting of a list of my certifications-->
+                <section class="certificate">
+                    <h2><i class="bi bi-award-fill right-container-icon"></i> Certification</h2>
+                    <hr>
+                    <div>
+                        <ul class="list">
+                        <li>IELTS Certification Band 7.0</li>
+                        <li>Microsoft Office Specialist (Word, Excel, Powerpoint)</li>
+                        </ul>
+                    </div>
+                </section>
+                <br>
+                <!--The language section, consisting of progress bars showing my ability in speakng each language-->
+                <section class="language">
+                    <h2><i class="bi bi-translate right-container-icon"></i> Language</h2>
+                    <hr>
+                    <div>
+                        <!-- The list below shows the languages I can speak along with progress bars indicating my level -->
+                        <ul>
+                       <li><h3>Vietnamese - Native</h3></li>
+                            <progress class="progress" value="100" max="100"></progress>                            
+                        <li><h3>English</h3></li>
+                            <progress class="progress" value="75" max="100"></progress>
+ 
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+    </div>
+    </div>
+</body>
+</html>
