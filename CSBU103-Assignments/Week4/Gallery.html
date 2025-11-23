@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Photo Gallery</title>
+        <style>
+            body{
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            #gallery{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 20px;
+                background-color: #f9f9f9;
+            }
+            #gallery img{
+                border: 2px solid #ccc;
+                border-radius: 5px;
+            }
+            #galleryLoadMethod, #uploadMethod{
+                margin: 10px 0px;
+            }
+            #uploadMethodInput textarea{
+                width: 100%;
+                height: 100px;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                resize: none;  
+                margin-bottom: 5px;              
+            }
+            #uploadControls{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            select{
+                padding: 10px;
+            }
+            button{
+                padding: 10px;
+                border: none;
+                background-color: #c1c1c1;
+                cursor: pointer;
+            }
+            
+            </style>
+    </head>
+    <body>
+        <h1>Photo Gallery</h1>
+        <div id ="uploadControls">
+            <select id="uploadMethod">
+                <option value="file" selected>Upload from File</option>
+                <option value="url">Upload from URL</option>
+            </select>
+        </div>
+        <div id="uploadMethodInput">
+            <input type="file" onchange="loadImages()" id="fileInput" multiple accept="image/*">
+        </div>
+        <select id="galleryLoadMethod">
+            <option value="add" selected>Add uploaded images to gallery</option>
+            <option value="replace">Replace gallery with uploaded images</option>
+        </select>
+        <button style="margin-left: 5px" onclick="clearGallery()">Clear Gallery</button>
+        <div id="gallery">
+
+        </div>
+        <template id="imgTemplate">
+            <img src="" style="width: 250px; margin: 10px;" alt="Gallery Image" />
+        </template>
+        <script>
+            const uploadMethodInput = document.querySelector('#uploadMethodInput');
+
+            document.querySelector('#uploadMethod').addEventListener('change', function() {
+                const method = this.value;
+                if (method === 'file') {
+                    uploadMethodInput.innerHTML = '<input type="file" id="fileInput" multiple accept="image/*">';
+                } else if (method === 'url') {
+                    uploadMethodInput.innerHTML = '<textarea id="fileInput" placeholder="Enter image URLs, separated by new lines, remember to remove any unnecessary spaces"></textarea><br><button onclick="loadImages()">Add Images from URLs</button>';
+                }
+            });
+
+            function loadImages() {
+                const fileInput = document.querySelector('#fileInput');
+                const gallery = document.querySelector('#gallery');
+                const imgTemplate = document.querySelector('#imgTemplate');
+                const uploadMethod = document.querySelector('#uploadMethod').value;
+
+                
+                if (document.querySelector('#galleryLoadMethod').value === 'replace') {
+                    gallery.innerHTML = '';
+                }                
+                if (uploadMethod === 'url') {
+                    const urls = fileInput.value.split('\n').map(url => url.trim()).filter(url => url !== '');
+                    urls.forEach(url => {
+                        const img = imgTemplate.content.cloneNode(true).querySelector('img');
+                        img.src = url;
+                        gallery.appendChild(img);
+                    });
+                }
+                else if (uploadMethod === 'file') {
+                    const files = fileInput.files;
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const reader = new FileReader();
+                        reader.onload = function(chosenFile) {
+                            const img = imgTemplate.content.cloneNode(true).querySelector('img');
+                            img.src = chosenFile.target.result;
+                            gallery.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                }
+
+            }
+            function clearGallery() {
+                const gallery = document.querySelector('#gallery');
+                gallery.innerHTML = '';
+            }
+        </script>
